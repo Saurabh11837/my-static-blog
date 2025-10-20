@@ -9,12 +9,15 @@ import Subscribe from "./component/Suscribe";
 export default function Home() {
   return (
     <>
-     {/* <p>my static blog website</p> */}
-     <Navbar/>
-     <Body/>
-     {/* <Blog/> */}
-     <Subscribe/>
-     <Footer/>
+    <section id="Home overflow-x-hidden">
+        {/* <p>my static blog website</p> */}
+      <Navbar/>
+      <Body/>
+      {/* <Blog/> */}
+      {/* <Subscribe/> */}
+      <Footer/>
+    </section>
+     
     </>
   );
 }

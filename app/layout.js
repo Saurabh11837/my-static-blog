@@ -1,5 +1,21 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { BlogProvider } from "./context/BlogContext";
+
+// export const metadata = {
+//   title: "My Blog App",
+//   description: "Next.js Blog Application",
+// };
+
+// export default function RootLayout({ children }) {
+//   return (
+//     <html lang="en">
+//       <body>
+//         <BlogProvider>{children}</BlogProvider>
+//       </body>
+//     </html>
+//   );
+// }
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

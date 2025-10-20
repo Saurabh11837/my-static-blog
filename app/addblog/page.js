@@ -3,7 +3,7 @@ import AddBlog from '../addblog/component/AddNewBlog'
 
 const page = () => {
   return (
-    <div>
+    <div className='overflow-x-hidden'>
       <AddBlog/>
     </div>
   )

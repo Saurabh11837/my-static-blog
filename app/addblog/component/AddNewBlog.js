@@ -2,17 +2,20 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-// import LifeStyle01 from "../addblog/component/asset/LifeStyle_01.webp";
+import LifeStyle01 from "./asset/LifeStyle_01.webp";
 // import LifeStyle01 from "../addblog/component/asset/Lifestyle_01.webp";
-// import LifeStyle02 from "../component/asset/Lifestyle_02.webp";
-// import LifeStyle03 from "../component/asset/Lifestyle_03.webp";
-// import Startup01 from "../component/asset/Startup_01.webp";
-// import Startup02 from "../component/asset/Startup_02.webp";
-// import Startup03 from "../component/asset/Startup_03.webp";
-// import Technology01 from "../component/asset/Technology_01.webp";
-// import Technology02 from "../component/asset/Technology_02.webp";
-// import Technology03 from "../component/asset/Technology_03.webp";
-// import Finance from "../component/asset/Finance.webp";
+import LifeStyle02 from "./asset/Lifestyle_02.webp";
+// import LifeStyle03 from ".asset/Lifestyle_03.webp";
+import Startup01 from "./asset/Startup_01.webp";
+import Startup02 from "./asset/Startup_02.webp";
+import Startup03 from "./asset/Startup_03.webp";
+import Technology01 from "./asset/Technology_01.webp";
+import Technology02 from "./asset/Technology_02.webp";
+import Technology03 from "./asset/Technology_03.webp";
+import Finance from "./asset/Finance.webp";
+import Navbar from "@/app/component/Navbar";
+import Footer from "@/app/component/Footer";
+import Body from "@/app/component/Body";
 
 export default function AddBlog() {
   const [blogPosts, setBlogPosts] = useState([
@@ -164,22 +167,27 @@ export default function AddBlog() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto py-10 px-5">
+
+    <> 
+
+    <Navbar/>
+    {/* <Body blogPosts={blogPosts} /> */}
+    <div className="  py-10 md:px-5 mt-15 flex flex-col">
       <h2 className="text-2xl font-bold mb-6 text-gray-800">Add New Blog</h2>
 
       {/* Form */}
       <form
         onSubmit={handleSubmit}
-        className="bg-white shadow-md rounded-xl p-6 space-y-5 border border-gray-100"
+        className="w-70 md:w-full bg-white shadow-md rounded-xl p-6 space-y-5 border border-gray-100 "
       >
-        <div className="grid md:grid-cols-2 gap-5">
+        <div className="grid  gap-5">
           <input
             type="text"
             name="title"
             value={formData.title}
             onChange={handleChange}
             placeholder="Blog Title"
-            className="border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 outline-none"
+            className="border border-gray-300 rounded-lg p-2 md:p-3 focus:ring-2 focus:ring-blue-500 outline-none"
           />
           <input
             type="text"
@@ -187,7 +195,7 @@ export default function AddBlog() {
             value={formData.category}
             onChange={handleChange}
             placeholder="Category"
-            className="border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 outline-none"
+            className="border border-gray-300 rounded-lg p-2 md:p-3 focus:ring-2 focus:ring-blue-500 outline-none"
           />
         </div>
 
@@ -198,14 +206,14 @@ export default function AddBlog() {
             value={formData.author}
             onChange={handleChange}
             placeholder="Author Name"
-            className="border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 outline-none"
+            className="border border-gray-300 rounded-lg p-2 md:p-3 focus:ring-2 focus:ring-blue-500 outline-none"
           />
           <input
             type="date"
             name="date"
             value={formData.date}
             onChange={handleChange}
-            className="border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 outline-none"
+            className="border border-gray-300 rounded-lg p-2 md:p-3 focus:ring-2 focus:ring-blue-500 outline-none"
           />
         </div>
 
@@ -215,7 +223,7 @@ export default function AddBlog() {
           onChange={handleChange}
           placeholder="Blog Description"
           rows="4"
-          className="border border-gray-300 rounded-lg p-3 w-full focus:ring-2 focus:ring-blue-500 outline-none resize-none"
+          className="border border-gray-300 rounded-lg p-2 md:p-3 w-full focus:ring-2 focus:ring-blue-500 outline-none resize-none"
         ></textarea>
 
         {/* Image Upload */}
@@ -283,5 +291,9 @@ export default function AddBlog() {
         ))}
       </div>
     </div>
+    
+    <Footer />
+    </>
+    
   );
 }
