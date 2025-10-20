@@ -6,7 +6,7 @@ const Blogpost = ({ posts }) => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6 ">
       {posts.map((post) => (
-        <Link key={post.id} href={`/BlogCardDetailed/${post.id}`}> 
+        <Link key={post.id} href={`/blog/${post.id}`}> 
         <div
           key={post.id}
           className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 cursor-pointer"

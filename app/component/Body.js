@@ -1,143 +1,287 @@
 "use client";
 import React, { useState } from "react";
-import { FaHome } from "react-icons/fa";
-import { CgProfile } from "react-icons/cg";
-import { MdCreateNewFolder } from "react-icons/md";
-import { FaPhoneVolume } from "react-icons/fa6";
-import { BiMessageRoundedDetail } from "react-icons/bi";
+import Image from "next/image";
+
+import LifeStyle01 from "../component/asset/LifeStyle_01.webp";
+import LifeStyle02 from "../component/asset/Lifestyle_02.webp";
+import LifeStyle03 from "../component/asset/Lifestyle_03.webp";
+import Startup01 from "../component/asset/Startup_01.webp";
+import Startup02 from "../component/asset/Startup_02.webp";
+import Startup03 from "../component/asset/Startup_03.webp";
+import Technology01 from "../component/asset/Technology_01.webp";
+import Technology02 from "../component/asset/Technology_02.webp";
+import Technology03 from "../component/asset/Technology_03.webp";
+import Finance from "../component/asset/Finance.webp";
+
 import { Poppins, Dancing_Script } from "next/font/google";
 
-import Image from "next/image";
-import img from "../component/asset/saurabh4.jpg";
-import Blog from "./Blog";
-// main navbar font
+import Link from "next/link";
+import { FiSearch } from "react-icons/fi";
+// Fonts
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "600"],
 });
 
-// only for "My Blog"
 const dancing = Dancing_Script({
   subsets: ["latin"],
   weight: ["600"],
 });
 
-const Body = () => {
+const Body = ({}) => {
+  const blogPosts = [
+    {
+      id: 1,
+      title: "A detailed step by step guide to manage your lifestyle",
+      category: "Lifestyle",
+      author: "John Carter",
+      description:
+        "A simple step-by-step guide to managing your lifestyle effectively.",
+      image: LifeStyle01,
+      date: "Oct 15, 2025",
+    },
+    {
+      id: 2,
+      title: "How to create an effective startup roadmap idea",
+      category: "Startup",
+      author: "Elena Smith",
+      description:
+        "Creating an effective startup roadmap helps you plan an idea into architecture.",
+      image: Startup01,
+      date: "Oct 10, 2025",
+    },
+    {
+      id: 3,
+      title: "Learning new technology to boost your career in software",
+      category: "Technology",
+      author: "Michael Brown",
+      description:
+        "New skills = new opportunities. Learn how to grow as a software engineer.",
+      image: Technology01,
+      date: "Oct 5, 2025",
+    },
+    {
+      id: 4,
+      title: "Tips for getting the most out of apps and software",
+      category: "Technology",
+      author: "Sara Adams",
+      description:
+        "We use tons of apps daily — here’s how to make the most of them.",
+      image: Technology02,
+      date: "Sep 29, 2025",
+    },
+    {
+      id: 5,
+      title: "Enhancing your skills and capturing memorable moments",
+      category: "Lifestyle",
+      author: "Emily Clark",
+      description:
+        "In today’s fast world, balancing work and passion is the key.",
+      image: LifeStyle02,
+      date: "Sep 25, 2025",
+    },
+    {
+      id: 6,
+      title: "Maximizing returns by minimizing resources in your startup",
+      category: "Startup",
+      author: "Ryan Lewis",
+      description:
+        "Smart scaling: how startups achieve more with fewer resources.",
+      image: Startup02,
+      date: "Sep 20, 2025",
+    },
+    {
+      id: 7,
+      title: "Taxes on Luxury Houses",
+      category: "Finance",
+      author: "David Green",
+      description:
+        "Luxury home taxes — what they mean for the market and your wallet.",
+      image: Finance,
+      date: "Sep 12, 2025",
+    },
+    {
+      id: 8,
+      title: "The New Way of Study",
+      category: "Startup",
+      author: "Monica Lee",
+      description:
+        "Blending traditional study with new digital tools for better learning.",
+      image: Startup03,
+      date: "Sep 5, 2025",
+    },
+  ];
   const [search, setSearch] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("All");
 
-  const handleSearch = () => {
-    console.log("Searching for:", search);
-    setSearch(""); // clear input after search
+  const categories = [
+    "All",
+    "Technology",
+    "Music",
+    "Lifestyle",
+    "Fitness",
+    "Food",
+    "Startup",
+    "Finance",
+  ];
+
+  // ✅ Handle category click
+  const handleCategoryChange = (category) => {
+    setSelectedCategory(category);
   };
 
+  // Real-time filtering logic (safe)
+  const filteredPosts = (blogPosts ?? []).filter((post) => {
+    const matchesSearch =
+      post.title.toLowerCase().includes(search.toLowerCase()) ||
+      post.category.toLowerCase().includes(search.toLowerCase()) ||
+      post.description.toLowerCase().includes(search.toLowerCase());
+
+    const matchesCategory =
+      selectedCategory === "All" ||
+      post.category.toLowerCase() === selectedCategory.toLowerCase();
+
+    return matchesSearch && matchesCategory;
+  });
+
   return (
-    <div className={`${poppins.className} flex`}>
-      {/* ✅ Left Sidebar (no border, shadow added) */}
-      <aside className="fixed top-0 left-0 h-screen w-64 bg-gray-100 shadow-lg flex flex-col justify-between z-40">
-        {/* Profile Section */}
-        <div className="flex flex-col items-center mt-8 gap-3">
-          <div className="h-35 w-35 rounded-full border-4 border-gray-300 flex items-center justify-center bg-white text-gray-600 font-medium">
-            {/* Profile */} <Image src={img} alt="profile pic" className="rounded-full"/>
-          </div>
-          <p className="text-gray-600 text-sm">So-rav Blog...</p>
-        </div>
+    <>
+      <div className={`${poppins.className} flex`}>
+        <div className="flex-1 mt-10 bg-gray-50">
+          <main className="w-full h-full flex flex-col items-center gap-5">
+            <div className="mt-10 md:px-30 flex flex-col items-center gap-5">
+              <h1 className="text-center text-4xl md:text-5xl font-bold text-gray-700 mb-4">
+                This is a{" "}
+                <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-blue-500 bg-clip-text text-transparent">
+                  blogging
+                </span>{" "}
+                <br />
+                platform.
+              </h1>
+              <p className="text-center text-gray-700 text-xs md:text-sm lg:text-base">
+                This is your space to think out loud, to share what matters, and
+                to write without filters. Whether it's one word or a thousand,
+                your story starts right here.
+              </p>
 
-        {/* Navigation Links */}
-        <nav className="mt-10 flex flex-col gap-3 px-6">
-          <button className="flex items-center gap-3 text-gray-700 hover:text-black hover:bg-gray-200 px-3 py-2 rounded-lg transition-all duration-200">
-            <FaHome className="h-5 w-5" />
-            <p>Home</p>
-          </button>
+              {/* ✅ Search Bar */}
 
-          <button className="flex items-center gap-3 text-gray-700 hover:text-black hover:bg-gray-200 px-3 py-2 rounded-lg transition-all duration-200">
-            <CgProfile className="h-5 w-5" />
-            <p>See Profile</p>
-          </button>
+              {/* ✅ Centered & Balanced Search Bar */}
+              <div className="flex items-center justify-center w-full md:w-1/2 px-4 mt-4">
+                <div className="flex items-center w-full bg-white border border-gray-300 rounded-full shadow-md overflow-hidden focus-within:ring-2 focus-within:ring-blue-500 transition-all duration-200">
+                  {/* Search Icon */}
+                  <FiSearch className="text-gray-500 ml-4" size={20} />
 
-          <button className="flex items-center gap-3 text-gray-700 hover:text-black hover:bg-gray-200 px-3 py-2 rounded-lg transition-all duration-200">
-            <MdCreateNewFolder className="h-5 w-5" />
-            <p>Add New Blog</p>
-          </button>
+                  {/* Input Field */}
+                  <input
+                    type="text"
+                    placeholder="Search Blog..."
+                    className="flex-grow px-4 py-3 text-sm text-gray-800 placeholder-gray-500 focus:outline-none"
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                  />
 
-          <button className="flex items-center gap-3 text-gray-700 hover:text-black hover:bg-gray-200 px-3 py-2 rounded-lg transition-all duration-200">
-            <FaPhoneVolume className="h-5 w-5" />
-            <p>Contact Us</p>
-          </button>
-        </nav>
-
-        {/* Footer */}
-        <div className="text-center text-xs text-gray-500 mb-4">
-          © 2025 My Blog
-        </div>
-      </aside>
-
-      {/* ✅ Right Section */}
-      <div className="flex-1 ml-64 min-h-screen bg-gray-50">
-        {/* Top Navbar */}
-        <header className="w-full  sticky top-0 z-30  flex items-center justify-between px-2 md:px-8 py-4 bg-gray-100 text-gray-800 h-16 shadow-sm">
-          <div className="w-1/2 flex  items-center gap-2">
-            <BiMessageRoundedDetail className="h-8 w-8 text-gray-700" />
-            <p
-              className={`${dancing.className} text-xl md:text-2xl font-semibold text-gray-900`}
-            >
-               Blogging Site
-            </p>
-          </div>
-
-          {/* Search Section */}
-          <div className="flex items-center bg-white border border-gray-300 rounded-lg overflow-hidden shadow-sm">
-            <input
-              type="text"
-              placeholder="Search Blog..."
-              className="px-3 py-2 text-sm bg-white focus:outline-none text-gray-800 w-30 md:w-56 placeholder-gray-500"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-            <button
-              onClick={handleSearch}
-              className="bg-gray-800 hover:bg-gray-900 text-white px-4 py-2 text-sm transition-all duration-200"
-            >
-              Search
-            </button>
-          </div>
-        </header>
-
-        {/* Main Content */}
-        <main className=" w-full h-full  flex flex-col  items-center gap-5   ">
-            <div className="mt-10 md:px-30 flex flex-col  items-center gap-5">
-                <h1 className=" text-center  text-4xl md:text-5xl font-bold text-gray-700 mb-4">This is a{" "} 
-                    <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-blue-500 bg-clip-text text-transparent">
-                    blogging
-                    </span>{" "}  <br></br>
-                    platform.
-                </h1>
-                <p className="text-center text-gray-700 text-xs md:text-sm lg:text-base">
-                    This is your space to think out loud, to share what matters, and to write without filters. Whether it's one word or a thousand, your story starts right here.
-                </p>
-
-                {/* Searc blog */}
-                <div className="border rounded h-10 w-1/2 flex items-center justify-between">
-                <input
-                  type="text"
-                  placeholder="Search Blog..."
-                  className=" px-3 py-2  text-sm bg-white focus:outline-none text-gray-800  md:w-56 placeholder-gray-500"
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                />
-                <button
-              onClick={handleSearch}
-              className="bg-gray-800 hover:bg-gray-900 text-white px-4 py-2 text-sm transition-all duration-200 cursor-pointer h-10 rounded-tr rounded-br"
-            >
-              Search
-            </button>
+                  {/* Search Button */}
+                  <button
+                    onClick={() => {
+                      console.log(`Searching for: ${search}`);
+                      setTimeout(() => setSearch(""), 300); // ✅ smooth clear
+                    }}
+                    className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-2.5 text-sm font-medium hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 rounded-full mr-2"
+                  >
+                    Search
+                  </button>
                 </div>
+              </div>
             </div>
-            
-            {/* Import Blog page */}
-            <Blog/>
-        </main>
+
+            {/* ✅ Category Buttons */}
+            <div className="flex flex-row justify-center items-center gap-4 mb-10 flex-wrap">
+              {categories.map((category) => (
+                <p
+                  key={category}
+                  onClick={() => handleCategoryChange(category)}
+                  className={`text-base md:text-lg px-4 py-1 border rounded-2xl cursor-pointer transition-all duration-200
+                    ${
+                      selectedCategory === category
+                        ? "bg-blue-700 text-white border-blue-700 shadow-md"
+                        : "text-gray-800 hover:bg-gray-100"
+                    }`}
+                >
+                  {category}
+                </p>
+              ))}
+            </div>
+
+            {/* ✅ Filtered Posts */}
+            {filteredPosts.length > 0 ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 p-10 w-full md:w-4/5 -mt-15 ">
+                {filteredPosts.map((post) => (
+                  <Link
+                    key={post.id} // ✅ key belongs here
+                    href={{
+                      pathname: `/blog/${post.id}`,
+                      query: {
+                        title: post.title,
+                        category: post.category,
+                        author: post.author,
+                        description: post.description,
+                        image: post.image.src,
+                        date: post.date,
+                      },
+                    }}
+                  >
+                    <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 cursor-pointer">
+                      <Image
+                        src={post.image}
+                        alt={post.title}
+                        width={400}
+                        height={250}
+                        className="object-cover w-full h-48"
+                      />
+                      <div className="p-4">
+                        <span className="text-xs font-medium text-indigo-600 bg-indigo-50 px-2 py-1 rounded-full">
+                          {post.category}
+                        </span>
+                        <h3 className="text-lg font-semibold mt-3 text-gray-800">
+                          {post.title}
+                        </h3>
+                        <p className="text-gray-500 text-sm mt-1">
+                          {post.description}
+                        </p>
+                        <div className="text-gray-400 text-xs mt-3 flex justify-between items-center">
+                          <span>{post.author}</span>
+                          <span>{post.date}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            ) : (
+              // ✅ Clean Empty State when no data
+              <div className="flex flex-col items-center justify-center text-center py-20 border rounded-2xl">
+                <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+                  No blogs found
+                </h2>
+                <p className="text-gray-500 max-w-md">
+                  It seems there are no posts available in{" "}
+                  <span className="font-medium text-blue-600">
+                    {selectedCategory}
+                  </span>{" "}
+                  category or matching your search for{" "}
+                  <span className="font-medium text-indigo-600">
+                    “{search || "anything"}”
+                  </span>
+                  .<br />
+                  Try choosing another category or clearing your search!
+                </p>
+              </div>
+            )}
+          </main>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
