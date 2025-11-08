@@ -1,21 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { BlogProvider } from "./context/BlogContext";
-
-// export const metadata = {
-//   title: "My Blog App",
-//   description: "Next.js Blog Application",
-// };
-
-// export default function RootLayout({ children }) {
-//   return (
-//     <html lang="en">
-//       <body>
-//         <BlogProvider>{children}</BlogProvider>
-//       </body>
-//     </html>
-//   );
-// }
+import Providers from "./Providers"; // 👈 import client wrapper
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,10 +20,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        {/* 👇 Wrap everything inside the client-side provider */}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
