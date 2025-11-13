@@ -33,7 +33,7 @@ export default function LoginPage() {
           onClick={() => signIn("google")}
           className="flex items-center justify-center gap-3 bg-white border border-gray-300 text-gray-700 px-6 py-3 rounded-full
                      hover:shadow-[0_0_20px_rgba(66,133,244,0.5)] hover:scale-105 transition-all duration-300 ease-in-out
-                     font-medium w-full mb-6"
+                     font-medium w-full mb-6 cursor-pointer"
         >
           <FcGoogle className="w-6 h-6" />
           Continue with Google
