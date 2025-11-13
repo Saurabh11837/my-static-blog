@@ -1,27 +1,27 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 
-export const authOptions = {
+const handler = NextAuth({
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
   ],
+
   secret: process.env.NEXTAUTH_SECRET,
 
-  // 👇 yeh part add karo
+  // 👇 Optional custom page (keep only if /login exists)
   pages: {
-    signIn: "/login", // custom login page
+    signIn: "/login",
   },
 
   callbacks: {
     async redirect({ url, baseUrl }) {
-      // Login hone ke baad redirect home page par
-      return baseUrl; // i.e. http://localhost:3000
+      // Always redirect to your site's base URL (works both local & deployed)
+      return baseUrl;
     },
   },
-};
+});
 
-const handler = NextAuth(authOptions);
 export { handler as GET, handler as POST };
